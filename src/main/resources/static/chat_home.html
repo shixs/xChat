@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xChat-chat</title>
+    <script type="text/javascript" src="js/stomp.js"></script>
+    <script type="text/javascript" src="js/sockjs-0.3.4.js"></script>
+    <script src="webjars/angularjs/1.5.3/angular.min.js" type="text/javascript"></script>
+    <script src="js/xChat.js" type="text/javascript"></script>
+    <script src="js/controller/chat_controller.js" type="text/javascript"></script>
+    <script src="js/service/chat_service.js" type="text/javascript"></script>
+    <script src="js/service/user_service.js" type="text/javascript"></script>
+    <script src="js/controller/user_controller.js" type="text/javascript"></script>
+</head>
+<body ng-app="xChatApp" class="ng-cloak">
+    <div ng-controller="UserController as uCtrl">
+        <div ng-repeat="u in uCtrl.userList">
+            <li>Welcome, {{u.user_name}}</li>
+        </div>
+    </div>
+    <div ng-controller="ChatController as cCtrl">
+
+        <div id="chatBox" ng-repeat="m in cCtrl.messages">
+            <li>{{m.content}} -- {{cCtrl.showDate(m.timestamp)}}</li>
+        </div>
+        <form name="sendMessage">
+            <div>
+                <input id="btn-input" type="text" placeholder="Type your message here..." ng-model="cCtrl.message">
+                <span>
+                    <button ng-click="cCtrl.sendMessage(cCtrl.message)" id="btn-chat">Send</button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
